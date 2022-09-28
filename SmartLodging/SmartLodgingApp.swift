@@ -13,8 +13,24 @@ struct SmartLodgingApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                OrderView()
+                    .tabItem {
+                        Label("Order", systemImage: "cart")
+                    }
+                AccountView()
+                    .tabItem {
+                        Label("Account", systemImage: "person")
+                    }
+                }
+
+            //CoreData
+            //ContentView()
+            //    .environment(\.managedObjectContext, //persistenceController.container.viewContext)
         }
     }
 }

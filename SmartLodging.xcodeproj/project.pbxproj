@@ -16,6 +16,9 @@
 		F4B85F2728E4269900E9FD7F /* SmartLodgingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B85F2628E4269900E9FD7F /* SmartLodgingTests.swift */; };
 		F4B85F3128E4269900E9FD7F /* SmartLodgingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B85F3028E4269900E9FD7F /* SmartLodgingUITests.swift */; };
 		F4B85F3328E4269900E9FD7F /* SmartLodgingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B85F3228E4269900E9FD7F /* SmartLodgingUITestsLaunchTests.swift */; };
+		F4F98B5D28E42B62000AB88E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F98B5C28E42B62000AB88E /* HomeView.swift */; };
+		F4F98B5F28E42B6F000AB88E /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F98B5E28E42B6F000AB88E /* OrderView.swift */; };
+		F4F98B6128E42B7A000AB88E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F98B6028E42B7A000AB88E /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		F4B85F2C28E4269900E9FD7F /* SmartLodgingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartLodgingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B85F3028E4269900E9FD7F /* SmartLodgingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartLodgingUITests.swift; sourceTree = "<group>"; };
 		F4B85F3228E4269900E9FD7F /* SmartLodgingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartLodgingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F4F98B5C28E42B62000AB88E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F4F98B5E28E42B6F000AB88E /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		F4F98B6028E42B7A000AB88E /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +106,10 @@
 			isa = PBXGroup;
 			children = (
 				F4B85F0F28E4269700E9FD7F /* SmartLodgingApp.swift */,
-				F4B85F1128E4269700E9FD7F /* Persistence.swift */,
-				F4B85F1628E4269700E9FD7F /* ContentView.swift */,
+				F4F98B5928E42AFD000AB88E /* Model */,
+				F4F98B5A28E42B08000AB88E /* View */,
+				F4F98B5B28E42B0D000AB88E /* ViewModel */,
+				F4F98B5828E42AC7000AB88E /* CoreData */,
 				F4B85F1828E4269900E9FD7F /* Assets.xcassets */,
 				F4B85F1A28E4269900E9FD7F /* SmartLodging.entitlements */,
 				F4B85F1328E4269700E9FD7F /* SmartLodging.xcdatamodeld */,
@@ -133,6 +141,39 @@
 				F4B85F3228E4269900E9FD7F /* SmartLodgingUITestsLaunchTests.swift */,
 			);
 			path = SmartLodgingUITests;
+			sourceTree = "<group>";
+		};
+		F4F98B5828E42AC7000AB88E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F4B85F1128E4269700E9FD7F /* Persistence.swift */,
+				F4B85F1628E4269700E9FD7F /* ContentView.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		F4F98B5928E42AFD000AB88E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F4F98B5A28E42B08000AB88E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F4F98B5C28E42B62000AB88E /* HomeView.swift */,
+				F4F98B5E28E42B6F000AB88E /* OrderView.swift */,
+				F4F98B6028E42B7A000AB88E /* AccountView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F4F98B5B28E42B0D000AB88E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +309,9 @@
 				F4B85F1028E4269700E9FD7F /* SmartLodgingApp.swift in Sources */,
 				F4B85F1228E4269700E9FD7F /* Persistence.swift in Sources */,
 				F4B85F1728E4269700E9FD7F /* ContentView.swift in Sources */,
+				F4F98B5F28E42B6F000AB88E /* OrderView.swift in Sources */,
+				F4F98B6128E42B7A000AB88E /* AccountView.swift in Sources */,
+				F4F98B5D28E42B62000AB88E /* HomeView.swift in Sources */,
 				F4B85F1528E4269700E9FD7F /* SmartLodging.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
