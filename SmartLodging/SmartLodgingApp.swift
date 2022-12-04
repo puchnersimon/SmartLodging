@@ -9,7 +9,9 @@ import SwiftUI
 
 @main
 struct SmartLodgingApp: App {
+    
     let persistenceController = PersistenceController.shared
+    //create viewModel !!!
 
     var body: some Scene {
         WindowGroup {
@@ -26,11 +28,7 @@ struct SmartLodgingApp: App {
                     .tabItem {
                         Label("Account", systemImage: "person")
                     }
-                }
-
-            //CoreData
-            //ContentView()
-            //    .environment(\.managedObjectContext, //persistenceController.container.viewContext)
+            }//.environmentObject(//viewModel)
         }
     }
 }

@@ -44,15 +44,15 @@ struct AccountView: View {
                         VStack {
                             
                             if value == 1 {
-                            Text("Apartment\(value)")
-                                .font(.system(size: 22))
-                                .foregroundColor(.green)
+                                Text("Apartment\(value)")
+                                    .font(.system(size: 22))
+                                    .foregroundColor(.green)
                             } else {
                                 Text("Apartment\(value)")
                                     .font(.system(size: 22))
                                     .foregroundColor(.red)
                             }
-                                
+                            
                             Text("14.07.2022 - 24.07.2022")
                         }
                         .multilineTextAlignment(.center)
@@ -65,7 +65,7 @@ struct AccountView: View {
             .padding()
             .navigationBarTitle("Account")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar(content: {
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         //ACTION
@@ -75,7 +75,7 @@ struct AccountView: View {
                         Image(systemName: "message")
                     }
                 }
-            })
+            }
         }
     }
 }
@@ -85,53 +85,49 @@ struct ApartmentInfo: View {
     
     var body: some View {
         
-            VStack {
-                Section {
-                    Text("Bookingname: John Doe")
-                        .frame(maxWidth: .infinity, maxHeight: 40)
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 25))
-                        .padding(.top, 10)
-                    
-                    Text("Access from: 14.07.2022, 2:00 PM")
-                        .frame(maxWidth: .infinity, maxHeight: 40)
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 22))
-                        
-                    Text("Access until: 24.07.2022, 10:00 AM")
-                        .frame(maxWidth: .infinity, maxHeight: 40)
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 22))
-                    Text("Access: allowed")
-                        .font(.title)
-                        .foregroundColor(.green)
-                }
+        VStack {
+            Section {
+                Text("Bookingname: John Doe")
+                    .frame(maxWidth: .infinity, maxHeight: 40)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 25))
+                    .padding(.top, 10)
                 
-                Spacer()
+                Text("Access from: 14.07.2022, 2:00 PM")
+                    .frame(maxWidth: .infinity, maxHeight: 40)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 22))
                 
-                Section {
-                    Text("Apartmentinformation:")
-                        .font(.title)
-                        .underline()
-                        .padding(.bottom, 2)
-                    Text("Apartment")
-                        .padding(.bottom, 2)
-                    Text("Adress: pattern street 1, 12345")
-                        .padding(.bottom, 2)
-                    Text("Country: model country")
-                        .padding(.bottom, 2)
-                    Text("+43664 123456789")
-                        .underline()
-                        .foregroundColor(.blue)
-                        .padding(.bottom, 10)
-                }
-                
-                
+                Text("Access until: 24.07.2022, 10:00 AM")
+                    .frame(maxWidth: .infinity, maxHeight: 40)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 22))
+                Text("Access: allowed")
+                    .font(.title)
+                    .foregroundColor(.green)
             }
-        
-        
-        
-        
+            
+            Spacer()
+            
+            Section {
+                Text("Apartmentinformation:")
+                    .font(.title)
+                    .underline()
+                    .padding(.bottom, 2)
+                Text("Apartment")
+                    .padding(.bottom, 2)
+                Text("Adress: pattern street 1, 12345")
+                    .padding(.bottom, 2)
+                Text("Country: model country")
+                    .padding(.bottom, 2)
+                Text("+43664 123456789")
+                    .underline()
+                    .foregroundColor(.blue)
+                    .padding(.bottom, 10)
+            }
+            
+            
+        }
         
     }
     
