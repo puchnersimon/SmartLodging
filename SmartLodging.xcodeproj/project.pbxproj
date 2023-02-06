@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F44C0C71293E310B0031C6AB /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C0C70293E310B0031C6AB /* Thing.swift */; };
+		F44C0C75293E3ED90031C6AB /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C0C74293E3ED90031C6AB /* Light.swift */; };
+		F44C0C77293E405D0031C6AB /* viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C0C76293E405D0031C6AB /* viewModel.swift */; };
+		F47FC995293CB573009BF615 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47FC994293CB573009BF615 /* Door.swift */; };
 		F4B85F1028E4269700E9FD7F /* SmartLodgingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B85F0F28E4269700E9FD7F /* SmartLodgingApp.swift */; };
 		F4B85F1228E4269700E9FD7F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B85F1128E4269700E9FD7F /* Persistence.swift */; };
 		F4B85F1528E4269700E9FD7F /* SmartLodging.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4B85F1328E4269700E9FD7F /* SmartLodging.xcdatamodeld */; };
@@ -39,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F44C0C70293E310B0031C6AB /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
+		F44C0C74293E3ED90031C6AB /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		F44C0C76293E405D0031C6AB /* viewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewModel.swift; sourceTree = "<group>"; };
+		F47FC994293CB573009BF615 /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
 		F4B85F0C28E4269700E9FD7F /* SmartLodging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartLodging.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B85F0F28E4269700E9FD7F /* SmartLodgingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartLodgingApp.swift; sourceTree = "<group>"; };
 		F4B85F1128E4269700E9FD7F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -155,6 +163,9 @@
 		F4F98B5928E42AFD000AB88E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F47FC994293CB573009BF615 /* Door.swift */,
+				F44C0C70293E310B0031C6AB /* Thing.swift */,
+				F44C0C74293E3ED90031C6AB /* Light.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,6 +183,7 @@
 		F4F98B5B28E42B0D000AB88E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F44C0C76293E405D0031C6AB /* viewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -310,9 +322,13 @@
 				F4B85F1228E4269700E9FD7F /* Persistence.swift in Sources */,
 				F4B85F1728E4269700E9FD7F /* ContentView.swift in Sources */,
 				F4F98B5F28E42B6F000AB88E /* OrderView.swift in Sources */,
+				F44C0C71293E310B0031C6AB /* Thing.swift in Sources */,
 				F4F98B6128E42B7A000AB88E /* AccountView.swift in Sources */,
+				F44C0C77293E405D0031C6AB /* viewModel.swift in Sources */,
+				F44C0C75293E3ED90031C6AB /* Light.swift in Sources */,
 				F4F98B5D28E42B62000AB88E /* HomeView.swift in Sources */,
 				F4B85F1528E4269700E9FD7F /* SmartLodging.xcdatamodeld in Sources */,
+				F47FC995293CB573009BF615 /* Door.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,7 +28,7 @@ struct SmartLodgingApp: App {
                     .tabItem {
                         Label("Account", systemImage: "person")
                     }
-            }//.environmentObject(//viewModel)
+                }//.environmentObject(//viewModel)
         }
     }
 }

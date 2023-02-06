@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     var body: some View {
         NavigationView {
             List {
@@ -49,6 +50,7 @@ struct HomeView: View {
 
 struct FrontDoorCell: View {
     
+    @State private var showingAlert = false
     
     var body: some View {
         VStack (alignment: .center, spacing: 10) {
@@ -66,9 +68,21 @@ struct FrontDoorCell: View {
                 
             }
             Button {
-                
+                print("sure to open door?")
+                //Alert
+                showingAlert = true
             } label: {
                 Text("open")
+                    .frame(maxWidth: .infinity)
+            }
+            .alert(isPresented: $showingAlert) {
+                Alert(
+                    title: Text("Are you sure you want to open the door?"),
+                    primaryButton: .default(Text("Open")) {
+                        print("Open Door...")
+                    },
+                    secondaryButton: .cancel()
+                )
             }
             .buttonStyle(.bordered)
             .padding(.bottom, 20)
@@ -177,7 +191,7 @@ struct routineCell: View {
                 .bold()
                 .underline()
                 .padding()
-                
+            
             
             Spacer()
             
