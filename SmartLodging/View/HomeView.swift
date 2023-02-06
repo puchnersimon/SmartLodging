@@ -11,7 +11,6 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            Image("Background_HomeView").resizable()
             List {
                 FrontDoorCell()
                 saveEnergyCell()
