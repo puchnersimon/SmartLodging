@@ -24,6 +24,10 @@ struct SmartLodgingApp: App {
                     .tabItem {
                         Label("Order", systemImage: "cart")
                     }
+                ActivityView()
+                    .tabItem {
+                        Label("Activity", systemImage: "figure.climbing")
+                    }
                 AccountView()
                     .tabItem {
                         Label("Account", systemImage: "person")
