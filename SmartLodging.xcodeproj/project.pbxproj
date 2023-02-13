@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F1CF828299A3EED00E14DE4 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1CF827299A3EED00E14DE4 /* WeatherView.swift */; };
+		6F1CF82A299A3FBB00E14DE4 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1CF829299A3FBB00E14DE4 /* Weather.swift */; };
 		6F7DCE6429929DE90089BE7D /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7DCE6329929DE90089BE7D /* ActivityView.swift */; };
 		6F9ADC562993BD08005C535F /* RelaxingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9ADC552993BD08005C535F /* RelaxingView.swift */; };
 		F44C0C71293E310B0031C6AB /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C0C70293E310B0031C6AB /* Thing.swift */; };
@@ -44,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F1CF827299A3EED00E14DE4 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		6F1CF829299A3FBB00E14DE4 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		6F5EF87B299A4E0E00F4D835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6F7DCE6329929DE90089BE7D /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		6F9ADC552993BD08005C535F /* RelaxingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaxingView.swift; sourceTree = "<group>"; };
 		F44C0C70293E310B0031C6AB /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
@@ -115,6 +120,7 @@
 		F4B85F0E28E4269700E9FD7F /* SmartLodging */ = {
 			isa = PBXGroup;
 			children = (
+				6F5EF87B299A4E0E00F4D835 /* Info.plist */,
 				F4B85F0F28E4269700E9FD7F /* SmartLodgingApp.swift */,
 				F4F98B5928E42AFD000AB88E /* Model */,
 				F4F98B5A28E42B08000AB88E /* View */,
@@ -167,6 +173,7 @@
 				F47FC994293CB573009BF615 /* Door.swift */,
 				F44C0C70293E310B0031C6AB /* Thing.swift */,
 				F44C0C74293E3ED90031C6AB /* Light.swift */,
+				6F1CF829299A3FBB00E14DE4 /* Weather.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +186,7 @@
 				F4F98B6028E42B7A000AB88E /* AccountView.swift */,
 				6F7DCE6329929DE90089BE7D /* ActivityView.swift */,
 				6F9ADC552993BD08005C535F /* RelaxingView.swift */,
+				6F1CF827299A3EED00E14DE4 /* WeatherView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,7 +332,9 @@
 				F4B85F1228E4269700E9FD7F /* Persistence.swift in Sources */,
 				F4B85F1728E4269700E9FD7F /* ContentView.swift in Sources */,
 				6F9ADC562993BD08005C535F /* RelaxingView.swift in Sources */,
+				6F1CF82A299A3FBB00E14DE4 /* Weather.swift in Sources */,
 				F4F98B5F28E42B6F000AB88E /* OrderView.swift in Sources */,
+				6F1CF828299A3EED00E14DE4 /* WeatherView.swift in Sources */,
 				F44C0C71293E310B0031C6AB /* Thing.swift in Sources */,
 				6F7DCE6429929DE90089BE7D /* ActivityView.swift in Sources */,
 				F4F98B6128E42B7A000AB88E /* AccountView.swift in Sources */,
@@ -491,6 +501,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartLodging/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -529,6 +540,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartLodging/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

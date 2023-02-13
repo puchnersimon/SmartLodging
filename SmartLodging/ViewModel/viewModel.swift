@@ -34,4 +34,8 @@ class viewModel: ObservableObject {
         
     }
     
+    func getWeatherData(){
+        
+    }
+    
 }
