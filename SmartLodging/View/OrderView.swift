@@ -88,15 +88,6 @@ struct OrderView: View {
                     
                 } else {
                     Spacer()
-                    
-                    //Packages
-                    //                        Text("Full house cleaning:").font(.system(size: 12))
-                    //                            .padding()
-                    //                            .foregroundColor(.gray)
-                    //                            .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    //Cleaning Packages
-                    //set Date/Time for cleaning
                     VStack {
                         DatePicker("", selection: $currentDate, displayedComponents: [.date, .hourAndMinute])
                             .datePickerStyle(WheelDatePickerStyle())
@@ -114,14 +105,11 @@ struct OrderView: View {
                         .frame(maxWidth: .infinity)
                         .border(.blue)
                         .background(.white)
-                        
                         Text("Your will get a message if someone is ready for the service!")
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                             .padding()
-                        
                     }
-                    
                 }
                 Spacer()
             }

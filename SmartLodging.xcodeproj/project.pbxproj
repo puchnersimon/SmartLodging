@@ -215,6 +215,8 @@
 			dependencies = (
 			);
 			name = SmartLodging;
+			packageProductDependencies = (
+			);
 			productName = SmartLodging;
 			productReference = F4B85F0C28E4269700E9FD7F /* SmartLodging.app */;
 			productType = "com.apple.product-type.application";
@@ -287,6 +289,8 @@
 				Base,
 			);
 			mainGroup = F4B85F0328E4269700E9FD7F;
+			packageReferences = (
+			);
 			productRefGroup = F4B85F0D28E4269700E9FD7F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

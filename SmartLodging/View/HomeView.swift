@@ -11,42 +11,40 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack{
-                
                 List {
-                    //WeatherView()
+                    // WeatherView()
                     Text("Weather View")
-                    //FrontDoorCell()
                     FrontDoorView()
                     saveEnergyCell()
-                    // lightCell()
                     lightsView()
                     heatingCell()
                     routineCell()
                     wakeUpRoutineCell()
-                }
-                .background(Color.cyan)
-                .listStyle(.grouped)
-                .navigationTitle("Home")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            print("message button was tapped")
-                        } label: {
-                            Image(systemName: "message")
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            print("menu opens")
-                        } label: {
-                            Image(systemName: "line.3.horizontal")
-                        }
+                }.listRowBackground(Color.red)
+            }
+            .background(
+                Image("Background_HomeView")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                //.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height) // full screen
+                    .scaledToFill()
+                    .opacity(0.3)
+            )
+            .padding()
+            .navigationTitle("Order")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        //action
+                        print("message")
+                    } label: {
+                        Image(systemName: "message")
                     }
                 }
             }
-            
         }
+        
     }
     
     
@@ -111,7 +109,7 @@ struct HomeView: View {
                 }
                 .padding()
                 
-            }
+            }.background(.clear)
         }
         
     }
@@ -147,10 +145,7 @@ struct HomeView: View {
                 .padding()
             }
         }
-        
     }
-    
-    
     
     struct heatingCell: View {
         
@@ -170,6 +165,7 @@ struct HomeView: View {
                         
                     } label: {
                         Text("colder")
+                            .font(.callout)
                     }
                     .buttonStyle(.bordered)
                     
@@ -177,10 +173,12 @@ struct HomeView: View {
                         
                     } label: {
                         Text("warmer")
+                            .font(.callout)
                     }
+                    .foregroundColor(.red)
                     .buttonStyle(.bordered)
                 }
-                .padding(.trailing)
+                //.padding(.trailing)
                 
             }
         }
@@ -196,28 +194,31 @@ struct HomeView: View {
                     .font(.system(size: 20))
                     .bold()
                     .underline()
-                    .padding()
+                //  .padding()
                 
                 
-                Spacer()
+                //Spacer()
                 
-                HStack {
-                    Button {
-                        
-                    } label: {
-                        Text("morning")
-                    }
-                    .buttonStyle(.bordered)
+                
+                Button {
                     
-                    Button {
-                        
-                    } label: {
-                        Text("evening")
-                    }
-                    .buttonStyle(.bordered)
+                } label: {
+                    Text("morning")
                 }
-                .padding()
+                .font(.system(size: 14))
+                .buttonStyle(.bordered)
+                
+                Button {
+                    
+                } label: {
+                    Text("evening")
+                }
+                .buttonStyle(.bordered)
+                .font(.system(size: 14))
+
             }
+            .padding()
+            
         }
         
     }
@@ -241,7 +242,7 @@ struct HomeView: View {
                     DatePicker("", selection: $currentDate, displayedComponents: [.hourAndMinute])
                         .datePickerStyle(WheelDatePickerStyle())
                         .labelsHidden()
-                        .padding()
+                    //                        .padding()
                 }
             }
         }
@@ -295,9 +296,6 @@ struct FrontDoorView: View{
                     secondaryButton: .cancel()
                 )
             }
-            
-            
-            
         }
     }
     func toggleLock(button: String){
@@ -320,7 +318,13 @@ struct FrontDoorView: View{
 struct RoomLight: Identifiable{
     var id = UUID()
     var name: String
-    var brightness: Double
+    var brightness: Double? = 50.0
+    mutating func setBrightness(newVal: Double) {
+        brightness = newVal
+    }
+    func getBrightness() -> Double {
+        brightness == nil ? 0.0 : brightness!
+    }
 }
 struct LightGroup: Identifiable{
     var id = UUID()
@@ -328,40 +332,66 @@ struct LightGroup: Identifiable{
     var lights : [RoomLight]
 }
 
-struct LightGroupView: View{
-    @State var brightness = 50.0
-    var lightGroup: LightGroup
-    
+struct LightView: View{
+    @State var light: RoomLight
     var body: some View{
+        Text(light.name)
+            .font(.system(size: 18, weight: .bold, design: .monospaced))
+        HStack{
+            Image(systemName: "sun.min")
+                .symbolRenderingMode(.hierarchical)
+                .foregroundColor(.yellow)
+            Slider(value: Binding(get: {
+                light.getBrightness()
+            }, set: { value in
+                light.setBrightness(newVal: value)
+            }), in: 0.0...100.0, step: 1.0)
+            .accentColor(.yellow)
+            
+            Image(systemName: "sun.max")
+                .symbolRenderingMode(.hierarchical)
+                .foregroundColor(.yellow)
+                .bold()
+        }
+    }
+}
+struct LightGroupView: View{
+    var lightGroup: LightGroup
+    @State var value = 0.5
+    @State var range = 0.2...0.8
+    var body: some View{
+        
         Text(lightGroup.name)
-        /*ForEach(lightGroup.lights, id: \.id){ light in
-            VStack{
-                Text(light.name)
-                //Slider(value: $brightness, in: 0...100)
-            }
-        }*/
+            .font(.system(size: 22, weight: .bold, design: .monospaced))
+            .underline()
+            .padding()
+        ForEach(lightGroup.lights, id: \.id){ light in
+            LightView(light: light)
+        }
+        Spacer()
     }
 }
 
 struct lightsView: View{
     
-    var rooms = [LightGroup(name: "Living Room", lights: [RoomLight(name: "DiningTableLamp", brightness: 50.0), RoomLight(name: "CornerLamp", brightness: 30.0)])]
+    var lightGroups = [LightGroup(name: "Living Room", lights: [RoomLight(name: "Dining Table Lamp", brightness: 50.0), RoomLight(name: "Corner Lamp", brightness: 30.0)]), LightGroup(name: "Bedroom", lights: [RoomLight(name: "Bedside Lamp left", brightness: 100.0), RoomLight(name: "Bedside Lamp Right", brightness: 100.0)]), LightGroup(name: "Corridor", lights: [RoomLight(name: "Corridor Lights", brightness: 100.0)]), LightGroup(name: "Kitchen", lights: [RoomLight(name: "Kitchen Lamp", brightness: 100.0)]), LightGroup(name: "Bath", lights: [RoomLight(name: "Bath Lights", brightness: 80.0),RoomLight(name: "Shower Lamp", brightness: 10.0)])]
     
     var body: some View{
         Text("Lights:")
             .font(.system(size: 20))
             .bold()
             .underline()
-        DisclosureGroup("Available Rooms"){
-            VStack (alignment: .leading) {
-                List(rooms) { room in     
-                    LightGroupView(lightGroup: room)
+            .padding()
+        VStack{
+            DisclosureGroup("Available Rooms"){
+                ForEach(lightGroups) { group in
+                    LightGroupView(lightGroup: group)
                     
                 }
             }
-        }   .padding()
+            
+        } .padding()
             .border(.blue)
-            .background(.clear)
     }
 }
 struct HomeView_Previews: PreviewProvider {
@@ -369,3 +399,4 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
+

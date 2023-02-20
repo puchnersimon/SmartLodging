@@ -29,7 +29,8 @@ struct EventView: View{
             + Text("\(event.costs)")
         }   .padding()
             .border(.blue)
-            .background(.clear)
+            .background(.white)
+            .font(.headline)
     }
 }
 
@@ -41,7 +42,6 @@ struct RelaxingView: View {
     var body: some View {
         NavigationStack {
             VStack{
-                Text("Lol")
 
                 ForEach(events) { event in
                     EventView(event: event)
@@ -51,9 +51,9 @@ struct RelaxingView: View {
                 Image("LivingRoom")
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
-                //.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+//                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                     .scaledToFill()
-                    .opacity(0.4)
+                    .opacity(0.3)
             )
             .padding()
             .navigationTitle("Relaxing Activities")
