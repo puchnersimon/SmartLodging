@@ -49,51 +49,6 @@ struct HomeView: View {
     
     
     
-    struct FrontDoorCell: View {
-        
-        @State private var showingAlert = false
-        
-        var body: some View {
-            VStack (alignment: .center, spacing: 10) {
-                HStack {
-                    Text("Front door:")
-                        .font(.system(size: 20))
-                        .bold()
-                        .underline()
-                        .padding()
-                    Spacer()
-                    Text("closed")
-                        .font(.system(size: 20))
-                        .foregroundColor(.green)
-                        .padding()
-                    
-                }
-                Button {
-                    print("sure to open door?")
-                    //Alert
-                    showingAlert = true
-                } label: {
-                    Text("open")
-                        .frame(maxWidth: .infinity)
-                }
-                .alert(isPresented: $showingAlert) {
-                    Alert(
-                        title: Text("Are you sure you want to open the door?"),
-                        primaryButton: .default(Text("Open")) {
-                            print("Open Door...")
-                        },
-                        secondaryButton: .cancel()
-                    )
-                }
-                .buttonStyle(.bordered)
-                .padding(.bottom, 20)
-            }            .listRowBackground(Color.clear)
-            
-        }
-        
-    }
-    
-    
     
     struct saveEnergyCell: View {
         
@@ -170,7 +125,6 @@ struct HomeView: View {
                     .buttonStyle(.bordered)
                     
                     Button {
-                        
                     } label: {
                         Text("warmer")
                             .font(.callout)
@@ -182,7 +136,6 @@ struct HomeView: View {
                 
             }
         }
-        
     }
     
     struct routineCell: View {
@@ -215,7 +168,7 @@ struct HomeView: View {
                 }
                 .buttonStyle(.bordered)
                 .font(.system(size: 14))
-
+                
             }
             .padding()
             
@@ -252,6 +205,7 @@ struct HomeView: View {
 
 struct FrontDoorView: View{
     @State var locked = true
+    @State var loaded = false
     @State var lockedOpacity = 1.0
     @State var unlockedOpacity = 0.3
     @State private var showingAlert = false
@@ -259,61 +213,149 @@ struct FrontDoorView: View{
     
     var body: some View{
         HStack{
-            Text("Tap to un-/lock Front door ")
-                .font(.headline)
-            Button(action:{
-                toggleLock(button: "doorLocked")
-            },label:{
-                Image("doorLocked")
-                    .resizable()
-                    .scaledToFit()
-                    .opacity(lockedOpacity)
+            if loaded{
+                Text("Front door:")
+                    .font(.system(size: 20))
+                    .bold()
+                    .underline()
+                    .padding()
                 
-            })
-            .buttonStyle(BorderlessButtonStyle())
-            
-            
-            Button(action:{
-                if(locked){
-                    showingAlert = true
-                }
-            },label: {
-                Image("doorUnlocked")
-                    .resizable()
-                    .scaledToFit()
-                    .opacity(unlockedOpacity)
-                
-            })
-            .buttonStyle(BorderlessButtonStyle())
-            .alert(isPresented: $showingAlert) {
-                Alert(
-                    title: Text("Are you sure you want to open the door?"),
-                    primaryButton: .default(Text("Open")) {
-                        print("Open Door...")
-                        toggleLock(button: "doorUnlocked")
+                if locked{
+                    
+                    Button(action:{
+                    },label:{
+                        Image("doorLocked")
+                            .resizable()
+                            .scaledToFit()
+                            .opacity(1.0)
                         
-                    },
-                    secondaryButton: .cancel()
-                )
+                    })
+                    .buttonStyle(BorderlessButtonStyle())
+                    
+                    Button(action:{
+                        if(locked){
+                            showingAlert = true
+                        }
+                    },label: {
+                        Image("doorUnlocked")
+                            .resizable()
+                            .scaledToFit()
+                            .opacity(0.3)
+                        
+                    })
+                    .buttonStyle(BorderlessButtonStyle())
+                    .alert(isPresented: $showingAlert) {
+                        Alert(
+                            title: Text("Are you sure you want to open the door?"),
+                            primaryButton: .default(Text("Open")) {
+                                print("Open Door...")
+                                changePlugState(toState: "ON")
+                            },
+                            secondaryButton: .cancel()
+                        )
+                    }
+                    
+                }else{
+                    Button(action:{
+                        changePlugState(toState: "OFF")
+                    },label:{
+                        Image("doorLocked")
+                            .resizable()
+                            .scaledToFit()
+                            .opacity(0.3)
+                        
+                    })
+                    .buttonStyle(BorderlessButtonStyle())
+                    
+                    Button(action:{
+                        if(locked){
+                            showingAlert = true
+                        }
+                    },label: {
+                        Image("doorUnlocked")
+                            .resizable()
+                            .scaledToFit()
+                            .opacity(1.0)
+                        
+                    })
+                    .buttonStyle(BorderlessButtonStyle())
+                    .alert(isPresented: $showingAlert) {
+                        Alert(
+                            title: Text("Are you sure you want to open the door?"),
+                            primaryButton: .default(Text("Open")) {
+                                print("Open Door...")
+                                changePlugState(toState: "ON")
+
+                            },
+                            secondaryButton: .cancel()
+                        )
+                    }
+                }
+            }else{
+                HStack{
+                    Text("Checking front door state")
+                        .foregroundColor(.gray)
+                    Spacer()
+                    ProgressView()
+                }
+            }
+        }.onAppear() {
+            self.getPlugState()            }
+        
+    }
+    
+    
+    func getPlugState(){
+        guard let url = URL(string: "http://smartlodging.ddns.net:8080/rest/items/SmartLodging_Plug_1")else{
+            return
+        }
+        let task = URLSession.shared.dataTask(with: url){ data, response, error in
+            let decoder = JSONDecoder()
+            
+            if let data = data{
+                do {
+                    let plug1 = try decoder.decode(Plug.self, from: data)
+                    if(plug1.state == "OFF"){
+                        locked = true
+                    }else if(plug1.state == "ON"){
+                        locked = false
+                    }
+                    print("Plug State: \(plug1.state)")
+                    loaded = true
+                }catch{
+                    print(error)
+                }
             }
         }
+        task.resume()
+        
     }
-    func toggleLock(button: String){
-        if (button == "doorUnlocked" && locked){
-            lockedOpacity = 0.3
-            unlockedOpacity = 1.0
-            locked = false
-            /**
-             TODO
-             unlock door
-             */
-        }else if (button == "doorLocked" && !locked){
-            lockedOpacity = 1.0
-            unlockedOpacity = 0.3
-            locked = true
+    
+    func changePlugState(toState: String){
+        // create the url with URL
+        let url = URL(string: "http://smartlodging.ddns.net:8080/rest/items/SmartLodging_Plug_1")!
+   
+        var request = URLRequest(url: url)
+        request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+
+        request.httpMethod = "POST"
+        let postString = toState
+        request.httpBody = postString.data(using: .utf8)
+        
+        // Getting response for POST Method
+        DispatchQueue.main.async {
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    return // check for fundamental networking error
+                }
+                locked.toggle()
+            }
+            task.resume()
         }
     }
 }
+
 
 struct RoomLight: Identifiable{
     var id = UUID()
