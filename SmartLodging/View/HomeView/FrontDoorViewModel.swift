@@ -8,8 +8,10 @@
 import Foundation
 
 @MainActor class FrontDoorViewModel: ObservableObject{
-    @Published var locked = true
+    @Published var isPlugOff = true
+    @Published var isFrontDoorClosed = true
     @Published var loaded = false
+    @Published var FrontDoorLoaded = false
     @Published var showingAlert = false
     
     
@@ -61,9 +63,9 @@ import Foundation
                     do {
                         let plug1 = try decoder.decode(Plug.self, from: data)
                         if(plug1.state == "OFF"){
-                            self.locked = true
+                            self.isPlugOff = false
                         }else if(plug1.state == "ON"){
-                            self.locked = false
+                            self.isPlugOff = true
                         }
                         print("Plug State: \(plug1.state)")
                         self.loaded = true
@@ -74,7 +76,6 @@ import Foundation
             }
         }
         task.resume()
-        
     }
     
     
@@ -101,7 +102,74 @@ import Foundation
                 }
                
             }
-            self.locked.toggle()
+            self.isPlugOff.toggle()
+            task.resume()
+        }
+    }
+    
+    
+    // ---------- SmartLock ------------
+    
+    
+    func getLockState() {
+        let token = "oh.smartlodgingaccesstoken.9AQfKvPm0lYEgZJlQQFHACgOGI1ei2AMwMEU5X45zgLfTEkjGIs9tsM9NoBYew0EN56n1yzN1BIHR2y08A"
+        let url = URL(string: "http://smartlodging.ddns.net:8080/rest/items/Nuki_Aktion")!
+   
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "GET"
+        request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        
+        
+        
+        let task = URLSession.shared.dataTask(with: request){ data, response, error in
+            let decoder = JSONDecoder()
+            DispatchQueue.main.async {
+                if let data = data{
+                    do {
+                        let lock = try decoder.decode(Plug.self, from: data)
+                        if(lock.state == "OFF"){
+                            self.isFrontDoorClosed = true
+                        }else if(lock.state == "ON"){
+                            self.isFrontDoorClosed = false
+                        }
+                        print("Lock State: \(lock.state)")
+                        self.FrontDoorLoaded = true
+                    }catch{
+                        print(error)
+                    }
+                }
+            }
+        }
+        task.resume()
+        
+    }
+    
+    
+    func changeLockState(toState: String){
+        let token = "oh.smartlodgingaccesstoken.9AQfKvPm0lYEgZJlQQFHACgOGI1ei2AMwMEU5X45zgLfTEkjGIs9tsM9NoBYew0EN56n1yzN1BIHR2y08A"
+        
+        // create the url with URL
+        let url = URL(string: "http://smartlodging.ddns.net:8080/rest/items/Nuki_Aktion")!
+   
+        var request = URLRequest(url: url)
+        request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+
+        request.httpMethod = "POST"
+        request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        let postString = toState
+        request.httpBody = postString.data(using: .utf8)
+        
+        // Getting response for POST Method
+        DispatchQueue.main.async {
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    return // check for fundamental networking error
+                }
+               
+            }
+            self.isFrontDoorClosed.toggle()
             task.resume()
         }
     }

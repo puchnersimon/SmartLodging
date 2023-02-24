@@ -15,14 +15,14 @@ struct FrontDoorView: View{
     var body: some View{
         HStack{
             
-            if viewModel.loaded{
+            if viewModel.FrontDoorLoaded{
                 Text("Front door:")
                     .font(.system(size: 18))
                     .bold()
                     .underline()
                     .padding()
                 
-                if viewModel.locked{
+                if viewModel.isFrontDoorClosed{
                     
                     Button(action:{
                     },label:{
@@ -35,7 +35,7 @@ struct FrontDoorView: View{
                     .buttonStyle(BorderlessButtonStyle())
                     
                     Button(action:{
-                        if(viewModel.locked){
+                        if(viewModel.isFrontDoorClosed){
                             viewModel.showingAlert = true
                         }
                     },label: {
@@ -51,7 +51,7 @@ struct FrontDoorView: View{
                             title: Text("Are you sure you want to open the door?"),
                             primaryButton: .default(Text("Open")) {
                                 print("Open Door...")
-                                viewModel.changePlugState(toState: "ON")
+                                viewModel.changeLockState(toState: "ON")
                             },
                             secondaryButton: .cancel()
                         )
@@ -59,7 +59,7 @@ struct FrontDoorView: View{
                     
                 }else{
                     Button(action:{
-                        viewModel.changePlugState(toState: "OFF")
+                        viewModel.changeLockState(toState: "OFF")
                     },label:{
                         Image("doorLocked")
                             .resizable()
@@ -70,7 +70,7 @@ struct FrontDoorView: View{
                     .buttonStyle(BorderlessButtonStyle())
                     
                     Button(action:{
-                        if(viewModel.locked){
+                        if(viewModel.isFrontDoorClosed){
                             viewModel.showingAlert = true
                         }
                     },label: {
@@ -86,7 +86,7 @@ struct FrontDoorView: View{
                             title: Text("Are you sure you want to open the door?"),
                             primaryButton: .default(Text("Open")) {
                                 print("Open Door...")
-                                viewModel.changePlugState(toState: "ON")
+                                viewModel.changeLockState(toState: "ON")
 
                             },
                             secondaryButton: .cancel()
@@ -102,7 +102,7 @@ struct FrontDoorView: View{
                 }
             }
         }.onAppear() {
-            viewModel.getPlugState()
+            viewModel.getLockState()
             
         }
         

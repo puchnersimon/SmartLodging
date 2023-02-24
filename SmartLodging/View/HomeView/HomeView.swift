@@ -15,6 +15,7 @@ struct HomeView: View {
                     // WeatherView()
                     Text("Weather View")
                     FrontDoorView()
+                    HeatingPlugView()
                     saveEnergyCell()
                     LightsView()
                     heatingCell()
