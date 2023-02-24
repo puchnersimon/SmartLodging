@@ -7,19 +7,20 @@
 
 import Foundation
 
-class Light: Thing {
-    
-    @Published var lightName: String = ""
-    @Published var isOn: Bool = false
-    @Published var dimming: Int = 0
-    @Published var temperature: Int = 0
-    
-    init(systemID: Int, isControllable: Bool, lightname: String, isOn: Bool, dimming: Int, temperature: Int) {
-        super.init(systemID: systemID, isControllable: isControllable)
-        self.lightName = lightname
-        self.isOn = isOn
-        self.dimming = dimming
-        self.temperature = temperature
+struct RoomLight: Identifiable{
+    var id = UUID()
+    var name: String
+    var brightness: Double? = 50.0
+    mutating func setBrightness(newVal: Double) {
+        brightness = newVal
     }
-    
+    func getBrightness() -> Double {
+        brightness == nil ? 0.0 : brightness!
+    }
 }
+struct LightGroup: Identifiable{
+    var id = UUID()
+    var name: String
+    var lights : [RoomLight]
+}
+

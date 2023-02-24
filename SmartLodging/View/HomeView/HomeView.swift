@@ -16,7 +16,7 @@ struct HomeView: View {
                     Text("Weather View")
                     FrontDoorView()
                     saveEnergyCell()
-                    lightsView()
+                    LightsView()
                     heatingCell()
                     routineCell()
                     wakeUpRoutineCell()
@@ -202,7 +202,7 @@ struct HomeView: View {
     }
 }
 
-
+/*
 struct FrontDoorView: View{
     @State var locked = true
     @State var loaded = false
@@ -355,8 +355,8 @@ struct FrontDoorView: View{
         }
     }
 }
-
-
+*/
+/*
 struct RoomLight: Identifiable{
     var id = UUID()
     var name: String
@@ -435,7 +435,7 @@ struct lightsView: View{
         } .padding()
             .border(.blue)
     }
-}
+}*/
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
