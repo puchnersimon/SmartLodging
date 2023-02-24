@@ -51,7 +51,7 @@ struct RelaxingView: View {
                 Image("LivingRoom")
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
-//                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+               .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                     .scaledToFill()
                     .opacity(0.3)
             )

@@ -102,7 +102,9 @@ struct FrontDoorView: View{
                 }
             }
         }.onAppear() {
-            viewModel.getPlugState()            }
+            viewModel.getPlugState()
+            
+        }
         
     }
     
