@@ -20,18 +20,18 @@ struct HomeView: View {
                     heatingCell()
                     routineCell()
                     wakeUpRoutineCell()
-                }.listRowBackground(Color.red)
+                }.scrollContentBackground(.hidden)
             }
             .background(
                 Image("Background_HomeView")
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
-                //.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height) // full screen
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height) // full screen
                     .scaledToFill()
                     .opacity(0.3)
             )
             .padding()
-            .navigationTitle("Order")
+            .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

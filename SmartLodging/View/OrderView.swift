@@ -117,7 +117,7 @@ struct OrderView: View {
                 Image(background)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
-                //.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                     .scaledToFill()
                     .opacity(0.7)
             )

@@ -58,7 +58,7 @@ struct AccountView: View {
                         .multilineTextAlignment(.center)
                     }
                     
-                }
+                }.scrollContentBackground(.hidden)
                 
                 
             }
