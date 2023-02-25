@@ -10,17 +10,17 @@ import SwiftUI
 struct HeatingPlugView: View {
     
     @StateObject private var viewModel = FrontDoorViewModel()
-    @State var state = false
+    @State var state = true
     
     var body: some View {
         HStack (alignment: .center, spacing: 10) {
-            Toggle (isOn: $state) {
+            Toggle (isOn: $viewModel.isPlugOn) {
                 Text("Plug State:")
                     .font(.system(size: 20))
                     .bold()
                     .underline()
             }
-            .onChange(of: state) { value in
+            .onChange(of: viewModel.isPlugOn) { value in
                 if value == true {
                     viewModel.changePlugState(toState: "ON")
                 } else {

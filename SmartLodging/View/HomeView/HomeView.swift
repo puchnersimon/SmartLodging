@@ -12,8 +12,8 @@ struct HomeView: View {
         NavigationView {
             VStack{
                 List {
-                    // WeatherView()
-                    Text("Weather View")
+                    WeatherView()
+                   // Text("Weather View")
                     FrontDoorView()
                     HeatingPlugView()
                     saveEnergyCell()

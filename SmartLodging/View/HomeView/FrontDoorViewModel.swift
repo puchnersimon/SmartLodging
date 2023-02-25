@@ -8,42 +8,11 @@
 import Foundation
 
 @MainActor class FrontDoorViewModel: ObservableObject{
-    @Published var isPlugOff = true
+    @Published var isPlugOn = true
     @Published var isFrontDoorClosed = true
     @Published var loaded = false
     @Published var FrontDoorLoaded = false
     @Published var showingAlert = false
-    
-    
-    /*
-    func getPlugState(){
-        guard let url = URL(string: "http://smartlodging.ddns.net:8080/rest/items/SmartLodging_Plug_1")else{
-            return
-        }
-        let task = URLSession.shared.dataTask(with: url){ data, response, error in
-            let decoder = JSONDecoder()
-            DispatchQueue.main.async {
-                if let data = data{
-                    do {
-                        let plug1 = try decoder.decode(Plug.self, from: data)
-                        if(plug1.state == "OFF"){
-                            self.locked = true
-                        }else if(plug1.state == "ON"){
-                            self.locked = false
-                        }
-                        print("Plug State: \(plug1.state)")
-                        self.loaded = true
-                    }catch{
-                        print(error)
-                    }
-                }
-            }
-        }
-        task.resume()
-        
-    }
-     */
-    
     
     func getPlugState() {
         let token = "oh.smartlodgingaccesstoken.9AQfKvPm0lYEgZJlQQFHACgOGI1ei2AMwMEU5X45zgLfTEkjGIs9tsM9NoBYew0EN56n1yzN1BIHR2y08A"
@@ -63,9 +32,9 @@ import Foundation
                     do {
                         let plug1 = try decoder.decode(Plug.self, from: data)
                         if(plug1.state == "OFF"){
-                            self.isPlugOff = false
+                            self.isPlugOn = false
                         }else if(plug1.state == "ON"){
-                            self.isPlugOff = true
+                            self.isPlugOn = true
                         }
                         print("Plug State: \(plug1.state)")
                         self.loaded = true
@@ -102,7 +71,7 @@ import Foundation
                 }
                
             }
-            self.isPlugOff.toggle()
+         //   self.isPlugOn.toggle()
             task.resume()
         }
     }
@@ -173,4 +142,35 @@ import Foundation
             task.resume()
         }
     }
+    
+    
+    
+    /*
+    func getPlugState(){
+        guard let url = URL(string: "http://smartlodging.ddns.net:8080/rest/items/SmartLodging_Plug_1")else{
+            return
+        }
+        let task = URLSession.shared.dataTask(with: url){ data, response, error in
+            let decoder = JSONDecoder()
+            DispatchQueue.main.async {
+                if let data = data{
+                    do {
+                        let plug1 = try decoder.decode(Plug.self, from: data)
+                        if(plug1.state == "OFF"){
+                            self.locked = true
+                        }else if(plug1.state == "ON"){
+                            self.locked = false
+                        }
+                        print("Plug State: \(plug1.state)")
+                        self.loaded = true
+                    }catch{
+                        print(error)
+                    }
+                }
+            }
+        }
+        task.resume()
+        
+    }
+     */
 }
