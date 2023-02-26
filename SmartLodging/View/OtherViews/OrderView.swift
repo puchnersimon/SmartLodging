@@ -119,7 +119,7 @@ struct OrderView: View {
                     .edgesIgnoringSafeArea(.all)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                     .scaledToFill()
-                    .opacity(0.7)
+                    .opacity(0.5)
             )
             .padding()
             .navigationTitle("Order")

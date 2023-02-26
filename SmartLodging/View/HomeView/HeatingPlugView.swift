@@ -10,7 +10,6 @@ import SwiftUI
 struct HeatingPlugView: View {
     
     @StateObject private var viewModel = FrontDoorViewModel()
-    @State var state = true
     
     var body: some View {
         HStack (alignment: .center, spacing: 10) {

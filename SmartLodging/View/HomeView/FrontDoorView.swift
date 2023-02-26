@@ -51,7 +51,7 @@ struct FrontDoorView: View{
                             title: Text("Are you sure you want to open the door?"),
                             primaryButton: .default(Text("Open")) {
                                 print("Open Door...")
-                                viewModel.changeLockState(toState: "ON")
+                                viewModel.changeLockState(toState: "OFF")
                             },
                             secondaryButton: .cancel()
                         )
@@ -59,7 +59,7 @@ struct FrontDoorView: View{
                     
                 }else{
                     Button(action:{
-                        viewModel.changeLockState(toState: "OFF")
+                        viewModel.changeLockState(toState: "ON")
                     },label:{
                         Image("doorLocked")
                             .resizable()
@@ -81,17 +81,7 @@ struct FrontDoorView: View{
                         
                     })
                     .buttonStyle(BorderlessButtonStyle())
-                    .alert(isPresented: $viewModel.showingAlert) {
-                        Alert(
-                            title: Text("Are you sure you want to open the door?"),
-                            primaryButton: .default(Text("Open")) {
-                                print("Open Door...")
-                                viewModel.changeLockState(toState: "ON")
-
-                            },
-                            secondaryButton: .cancel()
-                        )
-                    }
+                    
                 }
             }else{
                 HStack{
@@ -110,3 +100,10 @@ struct FrontDoorView: View{
     
 }
 
+
+struct Previews_FrontDoorView_Previews: PreviewProvider {
+    static var previews: some View {
+FrontDoorView()
+        
+    }
+}

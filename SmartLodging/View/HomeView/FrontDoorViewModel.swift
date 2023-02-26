@@ -98,9 +98,9 @@ import Foundation
                     do {
                         let lock = try decoder.decode(Plug.self, from: data)
                         if(lock.state == "OFF"){
-                            self.isFrontDoorClosed = true
-                        }else if(lock.state == "ON"){
                             self.isFrontDoorClosed = false
+                        }else if(lock.state == "ON"){
+                            self.isFrontDoorClosed = true
                         }
                         print("Lock State: \(lock.state)")
                         self.FrontDoorLoaded = true
