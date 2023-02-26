@@ -18,16 +18,8 @@ struct SmartLodgingApp: App {
             TabView {
                 HomeView()
                     .tabItem {
-                        Label {
-                            Text("Home")
-                                .foregroundColor(Color.red)
-                        } icon: {
-                            Image(systemName: "house")
-                                .foregroundColor(Color.green)
-                        }
-                        
+                        Label("Home", systemImage: "house")
                     }
-                  
                 OrderView()
                     .tabItem {
                         Label("Order", systemImage: "cart")

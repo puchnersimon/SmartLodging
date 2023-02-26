@@ -16,6 +16,8 @@ struct ButtonView: View {
         Image(imgString)
             .resizable()
             .scaledToFit()
+            .border(Color.black, width: 1)
+            .cornerRadius(15)
             .overlay(alignment: .bottom, content:
                 {
                 Text(name)
