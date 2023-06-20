@@ -13,13 +13,8 @@ struct LightsView: View{
     var lightGroups = [LightGroup(name: "Living Room", lights: [RoomLight(name: "Dining Table Lamp", brightness: 50.0), RoomLight(name: "Corner Lamp", brightness: 30.0)]), LightGroup(name: "Bedroom", lights: [RoomLight(name: "Bedside Lamp left", brightness: 100.0), RoomLight(name: "Bedside Lamp Right", brightness: 100.0)]), LightGroup(name: "Corridor", lights: [RoomLight(name: "Corridor Lights", brightness: 100.0)]), LightGroup(name: "Kitchen", lights: [RoomLight(name: "Kitchen Lamp", brightness: 100.0)]), LightGroup(name: "Bath", lights: [RoomLight(name: "Bath Lights", brightness: 80.0),RoomLight(name: "Shower Lamp", brightness: 10.0)])]
     
     var body: some View{
-        Text("Lights:")
-            .font(.system(size: 20))
-            .bold()
-            .underline()
-            .padding()
         VStack{
-            DisclosureGroup("Available Rooms"){
+            DisclosureGroup("Lights"){
                 ForEach(lightGroups) { group in
                     LightGroupView(lightGroup: group)
                     

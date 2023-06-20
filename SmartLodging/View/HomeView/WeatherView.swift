@@ -213,7 +213,7 @@ struct WeatherView: View {
         ]), startPoint: .top, endPoint: .bottom),
     ]
     let icon = [
-        "Clear": "moon.stars.fill",
+        "Clear": "sun.max.fill",
         "Sunny": "sun.max.fill",
         "Partly cloudy Moon": "cloud.moon.fill",
         "Partly cloudy": "cloud.sun.fill",
